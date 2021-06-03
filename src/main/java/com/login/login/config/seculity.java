@@ -51,7 +51,7 @@ public class seculity extends WebSecurityConfigurerAdapter {
             .and()
             .oauth2Login()////시큐리티에서 .oauth2Login()해줘야함 20210603
             .loginPage("/loginpage")
-            .userInfoEndpoint()///구글에게 신청한후받아서
+            .userInfoEndpoint()///구글/페이스북등에게 신청한후받아서
             .userService(principaloauth2userservice);////얘랑 처리함  
 
 

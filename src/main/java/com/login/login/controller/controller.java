@@ -50,7 +50,8 @@ public class controller {
             return "oauth";
     }
     @GetMapping("/user")
-    public @ResponseBody String user(){
+    public @ResponseBody String user(@AuthenticationPrincipal principaldetail principaldetail){
+            System.out.println("getuser"+principaldetail.getMembervo());
             return "user";
     }
     @GetMapping("/admin")

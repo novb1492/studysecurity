@@ -2,11 +2,13 @@ package com.login.login.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import com.login.login.user.membervo;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import lombok.Data;
 
@@ -17,13 +19,20 @@ import lombok.Data;
 //uservo=>userdetails로 객체가 바뀜
 //security session=>authentication=>userdetails순서대로 꺼내진다
 @Data
-public class principaldetail implements UserDetails{
+public class principaldetail implements UserDetails,OAuth2User{
 
     private membervo membervo;
+    private Map<String,Object>attributtes;
 
+    //일반로그인
     public principaldetail(membervo membervo)
     {
         this.membervo=membervo;
+    }
+    //oauth로그인
+    public principaldetail(membervo membervo,Map<String,Object>attributes){
+        this.membervo=membervo;
+        this.attributtes=attributes;
     }
 
     //해당 유저의 권한을 리턴한다
@@ -75,6 +84,18 @@ public class principaldetail implements UserDetails{
         //현재날-logindate 1년이상이면
         //false리턴하면됨
         return true;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+
+        return attributtes;
+    }
+
+    @Override
+    public String getName() {
+        
+        return null;//별로안중요함 attributtes.get("sub");
     }
     
 }

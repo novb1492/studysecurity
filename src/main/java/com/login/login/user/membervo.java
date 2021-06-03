@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Table(name="memberstest")
+@NoArgsConstructor
 @Entity
 public class membervo {
     
@@ -30,7 +32,7 @@ public class membervo {
     @Column(name="name",length = 20,nullable = false)
     private String name;
 
-    @Column(name="created",nullable=false)
+    @Column(name="created")
     @CreationTimestamp  
     private Timestamp created;
 
