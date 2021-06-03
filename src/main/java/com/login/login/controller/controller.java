@@ -35,15 +35,18 @@ public class controller {
     public @ResponseBody String logintest(Authentication authentication,@AuthenticationPrincipal UserDetails userDetails) {
             System.out.println("testlogin"+authentication.getPrincipal());//import org.springframework.security.core.Authentication; 이걸로 임포트해야함 20210603
             principaldetail principaldetail=(principaldetail)authentication.getPrincipal();
-            System.out.println("principal"+principaldetail.getMembervo());
+            
+            System.out.println("authentication"+principaldetail.getMembervo());
             System.out.println("userdetails"+userDetails.getUsername());
             return "test";
     }
     @GetMapping("/test/oauth/login")
-    public @ResponseBody String logintestoauth(Authentication authentication) {
+    public @ResponseBody String logintestoauth(Authentication authentication,@AuthenticationPrincipal OAuth2User oAuth2User) {
             System.out.println("testloginoauth"+authentication.getPrincipal());
             OAuth2User OAuth2User=(OAuth2User)authentication.getPrincipal();///oauth는 로그인시 OAuth2User로 받아야함
-            System.out.println("principaloauth"+OAuth2User.getAttributes());
+            ///두가지 방법으로 접근이 가능하다 Authentication/@AuthenticationPrincipal
+            System.out.println("authentication"+OAuth2User.getAttributes());
+            System.out.println("oauth"+oAuth2User.getAttributes());
             return "oauth";
     }
     @GetMapping("/user")
