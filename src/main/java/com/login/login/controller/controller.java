@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;//이걸로 임포트해
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,11 +33,18 @@ public class controller {
     
     @GetMapping("/test/login")
     public @ResponseBody String logintest(Authentication authentication,@AuthenticationPrincipal UserDetails userDetails) {
-            System.out.println("testlogin"+authentication.getPrincipal());
+            System.out.println("testlogin"+authentication.getPrincipal());//import org.springframework.security.core.Authentication; 이걸로 임포트해야함 20210603
             principaldetail principaldetail=(principaldetail)authentication.getPrincipal();
             System.out.println("principal"+principaldetail.getMembervo());
             System.out.println("userdetails"+userDetails.getUsername());
             return "test";
+    }
+    @GetMapping("/test/oauth/login")
+    public @ResponseBody String logintestoauth(Authentication authentication) {
+            System.out.println("testloginoauth"+authentication.getPrincipal());
+            OAuth2User OAuth2User=(OAuth2User)authentication.getPrincipal();///oauth는 로그인시 OAuth2User로 받아야함
+            System.out.println("principaloauth"+OAuth2User.getAttributes());
+            return "oauth";
     }
     @GetMapping("/user")
     public @ResponseBody String user(){
