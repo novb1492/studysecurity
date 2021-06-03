@@ -8,13 +8,15 @@ import com.login.login.user.membervo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
 
 //시큐리티가 로그인을 낚아채서 로그인인시키고
 //로그인을 진행이 완료돠면 예상대로 시큐리티세션이 넣는다(security contextholder)
 //오브젝트는 authentication으로 만 고정
 //uservo=>userdetails로 객체가 바뀜
 //security session=>authentication=>userdetails순서대로 꺼내진다
-
+@Data
 public class principaldetail implements UserDetails{
 
     private membervo membervo;

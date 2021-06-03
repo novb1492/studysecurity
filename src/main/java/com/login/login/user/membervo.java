@@ -36,4 +36,10 @@ public class membervo {
 
     @Column(name="role",nullable=false)
     private String role;
+
+    @Column(name="provider")
+    private String provider;
+    
+    @Column(name="providerid")
+    private String providerid;
 }

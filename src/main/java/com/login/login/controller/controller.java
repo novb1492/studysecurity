@@ -1,15 +1,21 @@
 package com.login.login.controller;
 
+import com.login.login.config.auth.principaldetail;
 import com.login.login.user.memberservice;
 import com.login.login.user.membervo;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;//이걸로 임포트해야함 20210603
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -24,6 +30,14 @@ public class controller {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     
+    @GetMapping("/test/login")
+    public @ResponseBody String logintest(Authentication authentication,@AuthenticationPrincipal UserDetails userDetails) {
+            System.out.println("testlogin"+authentication.getPrincipal());
+            principaldetail principaldetail=(principaldetail)authentication.getPrincipal();
+            System.out.println("principal"+principaldetail.getMembervo());
+            System.out.println("userdetails"+userDetails.getUsername());
+            return "test";
+    }
     @GetMapping("/user")
     public @ResponseBody String user(){
             return "user";
