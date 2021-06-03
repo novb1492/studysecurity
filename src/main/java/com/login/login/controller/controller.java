@@ -30,9 +30,9 @@ public class controller {
     public @ResponseBody  String admin(){
             return "admin";
     }
-    @GetMapping("/maneger")
-    public @ResponseBody  String maneger(){
-            return "maneger";
+    @GetMapping("/manage")
+    public @ResponseBody  String manage(){
+            return "manage";
     }
     @GetMapping("/loginpage")
     public  String loginpage(){
