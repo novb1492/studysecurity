@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 //시큐리티 설정에서.loginProcessingUrl("/login")
 //오면 자동으로  loadUserByUsername가 실행됨
-
 @Service
 public class principalservice implements UserDetailsService{
 

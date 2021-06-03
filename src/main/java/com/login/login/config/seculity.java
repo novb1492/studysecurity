@@ -34,7 +34,10 @@ public class seculity extends WebSecurityConfigurerAdapter {
             .loginPage("/loginpage")
             //.usernameParameter("email") 이렇게하면 UserDetails loadUserByUsername(String username) username->email로 가능
             .loginProcessingUrl("/login")
-            .defaultSuccessUrl("/");
+            .defaultSuccessUrl("/")
+            .and()
+            .oauth2Login()////시큐리티에서 .oauth2Login()해줘야함 20210603
+            .loginPage("/loginpage");//구글로그인이 완료된 후처리를 해줘야함
     }
 
     
